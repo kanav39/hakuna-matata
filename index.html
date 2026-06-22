@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> A Quick Question</title>
+    <style>
+      body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #fdf2f8;
+  font-family: sans-serif;
+  margin: 0;
+  user-select: none;
+}
+#question {
+  color: #374151;
+  text-align: center;
+}
+.button-box {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+button {
+  padding: 12px 30px;
+  font-size: 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition : 0.2s;
+}
+#yesButton {
+ background-color: #10b981;
+  color: white;
+}
+#noButton {
+  background-color: #ef4444;
+  color: white;
+}
+.hidden {
+  display: none;
+}
+.flower {
+  position: absolute; 
+  font-size: 50px;    
+  opacity: 0.8;       
+  user-select: none;  
+}
+
+.top-left {
+  top: 20px;
+  left: 20px;
+}
+
+.top-right {
+  top: 20px;
+  right: 20px;
+}
+
+.bottom-left {
+  bottom: 20px;
+  left: 20px;
+}
+
+.bottom-right {
+  bottom: 20px;
+  right: 20px;
+}
+.gif-image {
+  width: 200px;
+  display: block;
+  margin: 0 auto 20px auto;
+  user-select: none;
+}
+    </style>
+  </head>
+  <body>
+    <script>
+      const noButton = document.getElementById("noButton");
+const yesButton = document.getElementById("yesButton");
+const question = document.getElementById("question");
+const response = document.getElementById("response");
+
+function runAway(event) {
+  if (event) {
+    event.preventDefault(); 
+  }
+
+  const randomX = Math.random() * (window.innerWidth - 120);
+  const randomY = Math.random() * (window.innerHeight - 60);
+
+  noButton.style.position = "absolute";
+  noButton.style.left = randomX + "px";
+  noButton.style.top = randomY + "px";
+}
+
+noButton.addEventListener("mouseover", runAway);  
+noButton.addEventListener("touchstart", runAway); 
+
+yesButton.addEventListener("click", function() {
+  question.classList.add("hidden");
+  yesButton.classList.add("hidden");
+  noButton.classList.add("hidden");
+  
+  response.classList.remove("hidden");
+});
+    </script>
+  </body>
+</html>

@@ -89,43 +89,66 @@ button {
     <button id="noButton">No</button>
   </div>
   <div id="response" class="hidden">
-    <h2>Awsome. I'll plan something fun!❤</h2>
+    <h2>Awesome. I'll plan something fun!❤</h2>
   </div>
 </div>
 <div class="flower top-left">🌻</div>
 <div class="flower top-right">🌹</div>
 <div class="flower bottom-left">🌺</div>
 <div class="flower bottom-right">🌸</div>
-    
     <script>
-      const noButton = document.getElementById("noButton");
-const yesButton = document.getElementById("yesButton");
-const question = document.getElementById("question");
-const response = document.getElementById("response");
+    const noButton = document.getElementById("noButton");
+    const yesButton = document.getElementById("yesButton");
+    const question = document.getElementById("question");
+    const response = document.getElementById("response");
 
-function runAway(event) {
-  if (event) {
-    event.preventDefault(); 
-  }
+    // === NEW VISUAL AID: GROWTH LOGIC DIAGRAM ===
+    // [Image of growth logic diagram showing:
+    // (A) Initial state with small 'Yes' (20px).
+    // (B) Flowchart: 'No' click triggers size increment counter (+1).
+    // (C) Formula: New Size = Initial Size + (Counter * Growth Step).
+    // (D) Updated state with 'Yes' growing progressively (25px, 30px, 35px...)]
 
-  const randomX = Math.random() * (window.innerWidth - 120);
-  const randomY = Math.random() * (window.innerHeight - 60);
+    // --- Start of New Code for Growth ---
+    let noClickCount = 0; // Initialize a counter for 'No' interactions
+    const initialYesSize = 20; // Set the starting font size of the 'Yes' button in pixels (you can adjust this)
+    const growthPerClick = 10; // Pixels to add to the 'Yes' button each time 'No' is clicked
+    // --- End of New Code for Growth ---
 
-  noButton.style.position = "absolute";
-  noButton.style.left = randomX + "px";
-  noButton.style.top = randomY + "px";
-}
 
-noButton.addEventListener("mouseover", runAway);  
-noButton.addEventListener("touchstart", runAway); 
+    function runAway(event) {
+      if (event) {
+        event.preventDefault(); 
+      }
 
-yesButton.addEventListener("click", function() {
-  question.classList.add("hidden");
-  yesButton.classList.add("hidden");
-  noButton.classList.add("hidden");
-  
-  response.classList.remove("hidden");
-});
-    </script>
+      // --- Start of Updated Growth Logic ---
+      noClickCount++; // Increment the counter every time 'No' is clicked/hovered
+      const newYesSize = initialYesSize + (noClickCount * growthPerClick);
+      yesButton.style.fontSize = newYesSize + "px"; // Update the font size!
+      yesButton.style.padding = (noClickCount * 2) + 15 + "px " + (noClickCount * 4) + 35 + "px"; // Also grow padding!
+      // --- End of Updated Growth Logic ---
+
+
+      const randomX = Math.random() * (window.innerWidth - 120);
+      const randomY = Math.random() * (window.innerHeight - 60);
+
+      noButton.style.position = "absolute";
+      noButton.style.left = randomX + "px";
+      noButton.style.top = randomY + "px";
+    }
+
+    noButton.addEventListener("mouseover", runAway);  
+    noButton.addEventListener("touchstart", runAway); 
+
+    yesButton.addEventListener("click", function() {
+      question.classList.add("hidden");
+      yesButton.classList.add("hidden");
+      noButton.classList.add("hidden");
+      
+      response.classList.remove("hidden");
+    });
+  </script>
+    
+    
   </body>
 </html>
